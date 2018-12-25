@@ -14,20 +14,31 @@ namespace dataTypes{
             /*Holds a master list of all events created with the manager */
             private List<Event> eventList = new List<Event>();
             /*holds the Events by day */
-            private Dictionary<DateTime,SortedList<DateTime,Event>> eventsByTime = new Dictionary<DateTime, SortedList<DateTime,Event>>();
+            private Dictionary<DateTime,List<Event>> eventsByTime = new Dictionary<DateTime, List<Event>>();
             /*holds the total number of events in the manager */
-            private int numberOfEvents;
+            private int _numberOfEvents;
+            
+            public int numberOfEvents{
+                get{
+                    return _numberOfEvents;
+                }
+                private set{
+                    _numberOfEvents=value;
+                }
+            }
+            
             /*adds a new Event to the system */
             private void addEvents (Event newEvent){
                 if (newEvent.time == null){
                     throw new System.ArgumentException("time cannot be null", "newEvent.time");
                 }
                 eventList.Add(newEvent);
-                if(!eventsByTime.ContainsKey(newEvent.time.Date)){
-                    SortedList<DateTime,Event> newEventList = new SortedList<DateTime,Event>();
+                /*creates the SortedList<DateTime,Event>> if needed */
+                if(!eventsByTime.ContainsKey(newEvent.time)){
+                    List<Event> newEventList = new List<Event>();
                     eventsByTime.Add(newEvent.time.Date,newEventList);
                 }
-                eventsByTime[newEvent.time.Date].Add(newEvent.time,newEvent);
+                eventsByTime[newEvent.time.Date].Add(newEvent);
                 numberOfEvents++;
             }
             /*Given a event and a datetime log the event in the manager
