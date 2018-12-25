@@ -33,8 +33,8 @@ namespace dataTypes{
             }
             /*Creates a event and regesters it in the EventManager*/
             public Event(EventManager eventManager, string eventName, DateTime eventTime){
-                this.id = eventManager.getNextId(this , eventTime);
                 this.name = eventName;
+                this.id = eventManager.getNextId(this);
                 this.type = EventType.Generic;
             }
             /*override the toString methord*/

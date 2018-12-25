@@ -43,7 +43,7 @@ namespace Tests{
                 [TestCase(0,"EventA",EventType.StartingPop,'B',"dataTypes.EventSystem.Event:        0 :          StartingPop : 01/01/2200 00:00:00 : EventA")]
                 public void toString_StandordImput_ReturnsString(int id,string name,EventType et,char t, string stringResult){
                     DateTime time = t=='A' ? timeA : timeB;
-                    eventA = new Event(Convert.ToUInt64(id),name,et,time);
+                    eventA = new Event(id,name,et,time);
                     Assert.AreEqual(stringResult,eventA.ToString());
                 }
             }
