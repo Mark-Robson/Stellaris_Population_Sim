@@ -38,7 +38,7 @@ namespace Tests{
                 [Test]
                 public void Calendar_StartAfterEnd_ArgumentException(){
                     ArgumentException ex = Assert.Throws<ArgumentException>( delegate {testCalendar = new Calendar(end,start);} );
-                    Assert.AreEqual( ex.Message,"startDate cannot be set to after endDate\r\nParameter name: start" );
+                    Assert.AreEqual( "startDate cannot be set to after endDate\r\nParameter name: start",ex.Message );
                 }
                 /*Tests that both dates being the same works correctly*/
                 [Test]
@@ -103,13 +103,13 @@ namespace Tests{
                 [Test]
                 public void setStart_InvalidLaterDate_ArgumentException(){
                     ArgumentException ex = Assert.Throws<ArgumentException>( delegate {testCalendar.startDate = laterEndDate;} );
-                    Assert.AreEqual(ex.Message, "startDate cannot be set to after endDate\r\nParameter name: value" );
+                    Assert.AreEqual( "startDate cannot be set to after endDate\r\nParameter name: value",ex.Message);
                 }
                 /*Tests that seting endDate to befor startDates throws exception*/
                 [Test]
                 public void setend_InvalidEarlyerDate_valueUpdated(){
                     ArgumentException ex = Assert.Throws<ArgumentException>( delegate {testCalendar.endDate = earlyerStartDate;} );
-                    Assert.AreEqual(ex.Message, "endDate cannot be set to befor startDate\r\nParameter name: value" );
+                    Assert.AreEqual( "endDate cannot be set to befor startDate\r\nParameter name: value",ex.Message );
 
                 }
                 /*Tests that seting enddate to a startdate works correctly*/
